@@ -1,0 +1,6 @@
+DBHOST = "192.168.56.10"
+DBNAME = "db_kehadiran"
+DBUSER = "root"
+DBPASS = ""
+APIHOST = "192.168.56.11"
+APIPORT = 8080
