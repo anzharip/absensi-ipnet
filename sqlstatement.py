@@ -18,7 +18,11 @@ def sql_insert(query=None, host=DBHOST, database=DBNAME, user=DBUSER, password=D
     import mysql.connector
     conn = mysql.connector.connect(host=host, database=database, user=user, password=password)
     cursor = conn.cursor()
-    cursor.execute(query)
-    conn.commit()
-    cursor.close()
-    conn.close()
+    try:
+        cursor.execute(query)
+        conn.commit()
+        cursor.close()
+        conn.close()
+    except:
+        e = sys.exc_info()[0]
+        print e
