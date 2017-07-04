@@ -166,8 +166,11 @@ def post_akun_create():
         f = upload.file
         completedata = getcompletedata(f)
         sqlrecord = tosqlrecord(completedata)
+        print "Uploading to divisi table..."
         uploaddivisi(completedata)
+        print "Uploading to karyawan table..."
         uploadkaryawan(completedata)
+        print "Uploading to kehadiran table..."
         uploadkehadiran(sqlrecord)
     except:
         e = sys.exc_info()[0]
