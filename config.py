@@ -1,6 +1,6 @@
-DBHOST = "192.168.56.10"
+DBHOST = "localhost"
 DBNAME = "db_kehadiran"
-DBUSER = "root"
-DBPASS = ""
-APIHOST = "192.168.56.11"
+DBUSER = "ipnet"
+DBPASS = "ipnet"
+APIHOST = "0.0.0.0"
 APIPORT = 8080
