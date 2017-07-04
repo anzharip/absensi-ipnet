@@ -171,7 +171,7 @@ def post_akun_create():
         uploadkehadiran(sqlrecord)
     except:
         e = sys.exc_info()[0]
-        print e.output
+        print e, e.output
         json_res = {
             "status": "error",
             "message": "Upload data karyawan dan kehadiran gagal. Hubungi administrator. ",
