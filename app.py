@@ -39,12 +39,12 @@ class InputData(object):
             return False
         elif self.len > self.maxlen:
             return False
-        else: 
+        else:
             return True
     def istypevalid(self):
         return True
     def isvalid(self):
-        return self.istypevalid() and self.islenvalid() 
+        return self.istypevalid() and self.islenvalid()
 
 class IDAkun(InputData):
     def istypevalid(self):
@@ -62,7 +62,7 @@ class Tanggal(InputData):
     def islenvalid(self):
         if self.len is not 8:
             return False
-        else: 
+        else:
             return True
     def inputtype(self):
         return "tanggal"
@@ -79,7 +79,7 @@ class Tahun(InputData):
     def islenvalid(self):
         if self.len is not 4:
             return False
-        else: 
+        else:
             return True
     def inputtype(self):
         return "tahun"
@@ -127,13 +127,13 @@ def post_akun_create():
     if validateinput(usr_pass)[0] is False:
         return validateinput(usr_pass)[1]
     enc_pass.update(usr_pass.data)
-    try: 
+    try:
         dataakun = sql_query('''SELECT * FROM %s.karyawan \
             WHERE id = %s AND id_divisi_fk = 100001 AND enc_pass = "%s";''' % (DBNAME, idakun.data, enc_pass.hexdigest()))
     except mysql.connector.Error:
         json_res = {
             "status": "error",
-            "message": "Kesalahan sistem: tidak bisa menghubungi basis data", 
+            "message": "Kesalahan sistem: tidak bisa menghubungi basis data",
             "data": "",
         }
         return json.dumps(json_res)
@@ -146,7 +146,7 @@ def post_akun_create():
             "data": "",
         }
         return json.dumps(json_res)
-    try: 
+    try:
         name, ext = os.path.splitext(upload.filename)
     except:
         json_res = {
@@ -169,14 +169,15 @@ def post_akun_create():
         uploaddivisi(completedata)
         uploadkaryawan(completedata)
         uploadkehadiran(sqlrecord)
-    except:
+    except Error as e:
+        print e.output
         json_res = {
             "status": "error",
             "message": "Upload data karyawan dan kehadiran gagal. Hubungi administrator. ",
             "data": "",
         }
-        
-        return json.dumps(json_res)        
+
+        return json.dumps(json_res)
     json_res = {
         "status": "ok",
         "message": "Upload data karyawan dan kehadiran berhasil",
@@ -189,7 +190,7 @@ def get_kehadiran():
     import hashlib
     idakun = IDAkun(str(request.query.idakun), 6)
     if validateinput(idakun)[0] is False:
-        return validateinput(idakun)[1]    
+        return validateinput(idakun)[1]
     tgl_lahir = Tanggal(str(request.query.tgl_lahir), 8)
     if validateinput(tgl_lahir)[0] is False:
         return validateinput(tgl_lahir)[1]
@@ -214,13 +215,13 @@ def get_kehadiran():
             return "%s:%s:%s" % (hours, minutes, seconds)
         else:
             raise
-    try: 
+    try:
         dataakun = sql_query('''SELECT * FROM %s.karyawan \
             WHERE id = %s AND enc_pass = "%s";''' % (DBNAME, idakun.data, enc_pass.hexdigest()))
     except mysql.connector.Error:
         json_res = {
             "status": "error",
-            "message": "Kesalahan sistem: tidak bisa menghubungi basis data", 
+            "message": "Kesalahan sistem: tidak bisa menghubungi basis data",
             "data": "",
         }
         return json.dumps(json_res)
@@ -241,7 +242,7 @@ def get_kehadiran():
     except mysql.connector.Error:
         json_res = {
             "status": "error",
-            "message": "Kesalahan sistem: tidak bisa menghubungi basis data", 
+            "message": "Kesalahan sistem: tidak bisa menghubungi basis data",
             "data": "",
         }
         return json.dumps(json_res)
