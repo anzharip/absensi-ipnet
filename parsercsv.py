@@ -121,21 +121,6 @@ def getattendance(dataaslist, startendline):
         csvstrip.append(line.strip())
     for line in emptycol:
         del csvstrip[line]
-    return csvstrip
-
-def getattendance(dataaslist, startendline):
-    concat = ''
-    for line in dataaslist[startendline[0]:startendline[1]]:
-        concat = concat + line
-    concat = concat.replace("\"", "")
-    concat = concat.replace("\n", "")
-    csv = concat.split(";")
-    emptycol = [34, 25, 12, 1, 0]
-    csvstrip = []
-    for line in csv:
-        csvstrip.append(line.strip())
-    for line in emptycol:
-        del csvstrip[line]
     beautified = []
     for line in csvstrip:
         if line == "":
