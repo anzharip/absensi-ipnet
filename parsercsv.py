@@ -110,7 +110,7 @@ def getstartenddate(dataaslist):
             print 'linex', line
             print 'line[3:6]', line[3:6]
             date = ''
-            if str(line[3:6]) is 'Jan':
+            if str(line[3:6]) is 'Jan':x
                 date = '01'
             elif str(line[3:6]) is 'Feb':
                 date = '02'
