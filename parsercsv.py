@@ -107,6 +107,8 @@ def getstartenddate(dataaslist):
     beautified = []
     for line in startenddate:
         if re.search('[a-zA-Z]', line):
+            print 'line', line
+            print 'line[3:6]', line[3:6]
             date = ''
             if str(line[3:6]) is 'Jan':
                 date = '01'
