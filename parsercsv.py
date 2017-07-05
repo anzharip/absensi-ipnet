@@ -1,6 +1,7 @@
 # Import custom module
 import config
 import sqlstatement
+import re
 
 DBHOST = config.DBHOST
 DBNAME = config.DBNAME
@@ -105,7 +106,35 @@ def getstartenddate(dataaslist):
         del startenddate[line]
     beautified = []
     for line in startenddate:
-        beautified.append(year + "-" + line[3:5] + "-" + line[0:2])
+        if re.search('[a-zA-Z]', line):
+            date = ''
+            if str(line[3:6]) is 'Jan':
+                date = '01'
+            elif str(line[3:6]) is 'Feb':
+                date = '02'
+            elif str(line[3:6]) is 'Mar':
+                date = '03'
+            elif str(line[3:6]) is 'Apr':
+                date = '04'
+            elif str(line[3:6]) is 'Mei':
+                date = '05'
+            elif str(line[3:6]) is 'Jun':
+                date = '06'
+            elif str(line[3:6]) is 'Jul':
+                date = '07'
+            elif str(line[3:6]) is 'Agu':
+                date = '08'
+            elif str(line[3:6]) is 'Sep':
+                date = '09'
+            elif str(line[3:6]) is 'Okt':
+                date = '10'
+            elif str(line[3:6]) is 'Nov':
+                date = '11'
+            elif str(line[3:6]) is 'Des':
+                date = '12'
+            beautified.append(year + "-" + line[0:2] + "-" + date)
+        else:
+            beautified.append(year + "-" + line[3:5] + "-" + line[0:2])
     return beautified
 
 def getattendance(dataaslist, startendline):
