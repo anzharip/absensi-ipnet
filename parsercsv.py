@@ -111,30 +111,29 @@ def getstartenddate(dataaslist):
             print 'line[3:6]', line[3:6]
             date = ''
             if str(line[3:6]) is 'Jan':
-                date = '01'
+                beautified.append(year + "-" + line[0:2] + "-" + '01')
             elif str(line[3:6]) is 'Feb':
-                date = '02'
+                beautified.append(year + "-" + line[0:2] + "-" + '02')
             elif str(line[3:6]) is 'Mar':
-                date = '03'
+                beautified.append(year + "-" + line[0:2] + "-" + '03')
             elif str(line[3:6]) is 'Apr':
-                date = '04'
+                beautified.append(year + "-" + line[0:2] + "-" + '04')
             elif str(line[3:6]) is 'Mei':
-                date = '05'
+                beautified.append(year + "-" + line[0:2] + "-" + '05')
             elif str(line[3:6]) is 'Jun':
-                date = '06'
+                beautified.append(year + "-" + line[0:2] + "-" + '06')
             elif str(line[3:6]) is 'Jul':
-                date = '07'
+                beautified.append(year + "-" + line[0:2] + "-" + '07')
             elif str(line[3:6]) is 'Agu':
-                date = '08'
+                beautified.append(year + "-" + line[0:2] + "-" + '08')
             elif str(line[3:6]) is 'Sep':
-                date = '09'
+                beautified.append(year + "-" + line[0:2] + "-" + '09')
             elif str(line[3:6]) is 'Okt':
-                date = '10'
+                beautified.append(year + "-" + line[0:2] + "-" + '10')
             elif str(line[3:6]) is 'Nov':
-                date = '11'
+                beautified.append(year + "-" + line[0:2] + "-" + '11')
             elif str(line[3:6]) is 'Des':
-                date = '12'
-            beautified.append(year + "-" + line[0:2] + "-" + date)
+                beautified.append(year + "-" + line[0:2] + "-" + '12')
         else:
             beautified.append(year + "-" + line[3:5] + "-" + line[0:2])
     return beautified
