@@ -129,7 +129,7 @@ def getstartenddate(dataaslist):
                 date = '10'
             elif str(line[3:5]) is 'Nov':
                 date = '11'
-            else str(line[3:5]) is 'Des':
+            elif str(line[3:5]) is 'Des':
                 date = '12'
             beautified.append(year + "-" + date + "-" + line[0:2])
         else:
