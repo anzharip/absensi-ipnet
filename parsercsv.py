@@ -109,25 +109,25 @@ def getstartenddate(dataaslist):
             date = ''
             if str(line[3:5]) is 'Jan':
                 date = '01'
-            else if str(line[3:5]) is 'Feb':
+            elif str(line[3:5]) is 'Feb':
                 date = '02'
-            else if str(line[3:5]) is 'Mar':
+            elif str(line[3:5]) is 'Mar':
                 date = '03'
-            else if str(line[3:5]) is 'Apr':
+            elif str(line[3:5]) is 'Apr':
                 date = '04'
-            else if str(line[3:5]) is 'Mei':
+            elif str(line[3:5]) is 'Mei':
                 date = '05'
-            else if str(line[3:5]) is 'Jun':
+            elif str(line[3:5]) is 'Jun':
                 date = '06'
-            else if str(line[3:5]) is 'Jul':
+            elif str(line[3:5]) is 'Jul':
                 date = '07'
-            else if str(line[3:5]) is 'Agu':
+            elif str(line[3:5]) is 'Agu':
                 date = '08'
-            else if str(line[3:5]) is 'Sep':
+            elif str(line[3:5]) is 'Sep':
                 date = '09'
-            else if str(line[3:5]) is 'Okt':
+            elif str(line[3:5]) is 'Okt':
                 date = '10'
-            else if str(line[3:5]) is 'Nov':
+            elif str(line[3:5]) is 'Nov':
                 date = '11'
             else str(line[3:5]) is 'Des':
                 date = '12'
