@@ -11,9 +11,9 @@ sql_query = sqlstatement.sql_query
 sql_insert = sqlstatement.sql_insert
 
 # Open file with name and readonly mode
-def getdataaslist(fileobj): 
+def getdataaslist(fileobj):
     list = []
-    for line in fileobj: 
+    for line in fileobj:
         list.append(line)
     return list
 
@@ -23,7 +23,7 @@ def getendpos(datalist):
     linepos = 0
     for line in datalist:
         if ";" in line[:1]:
-            if linepos >= attendancelinestart: 
+            if linepos >= attendancelinestart:
                 listreturn.append(linepos)
         linepos = linepos + 1
     listreturn.append(len(datalist))
@@ -42,8 +42,8 @@ def isnoisedata(startpos, endpos, datalist):
 def getstartendpos(endposlist, datalist):
     listreturn = []
     linepos = 0
-    for line in endposlist: 
-        if linepos < (len(endposlist) - 1): 
+    for line in endposlist:
+        if linepos < (len(endposlist) - 1):
             if isnoisedata((endposlist[linepos] + 1), endposlist[linepos + 1], datalist) is False:
                 listreturn.append([(endposlist[linepos] + 1), endposlist[linepos + 1]])
             linepos = linepos + 1
@@ -52,14 +52,14 @@ def getstartendpos(endposlist, datalist):
 def getpersondata(datalist, startendpos, posnum):
     linepos = startendpos[posnum][0]
     output = []
-    while linepos <= (startendpos[posnum][1] - 1): 
+    while linepos <= (startendpos[posnum][1] - 1):
         output.append(datalist[linepos])
         linepos = linepos + 1
     return output
 
-def getpersonname(lists): 
+def getpersonname(lists):
     output = ""
-    for line in lists: 
+    for line in lists:
         if ((line[:1].isalpha()) or ("\"" in line[:1])):
             if "Nama" not in line:
                 output = output + line + " "
@@ -67,10 +67,10 @@ def getpersonname(lists):
     output = output.replace("\"", "")
     return output[:(output.find("("))].strip()
 
-def getpersonid(lists): 
+def getpersonid(lists):
     output = ""
-    for line in lists: 
-        if ("(" in line) or (")" in line): 
+    for line in lists:
+        if ("(" in line) or (")" in line):
             output = output + line
     output = output.replace("\n", "")
     output = output.replace("\"", "")
@@ -101,7 +101,7 @@ def getstartenddate(dataaslist):
     dateline = dateline.replace("\"", "")
     dateline = dateline.replace("\n, ", "")
     startenddate = dateline.split(";")
-    for line in emptycol: 
+    for line in emptycol:
         del startenddate[line]
     beautified = []
     for line in startenddate:
@@ -110,31 +110,31 @@ def getstartenddate(dataaslist):
 
 def getattendance(dataaslist, startendline):
     concat = ''
-    for line in dataaslist[startendline[0]:startendline[1]]: 
+    for line in dataaslist[startendline[0]:startendline[1]]:
         concat = concat + line
     concat = concat.replace("\"", "")
     concat = concat.replace("\n", "")
     csv = concat.split(";")
     emptycol = [34, 25, 12, 1, 0]
     csvstrip = []
-    for line in csv: 
+    for line in csv:
         csvstrip.append(line.strip())
-    for line in emptycol: 
+    for line in emptycol:
         del csvstrip[line]
     return csvstrip
 
 def getattendance(dataaslist, startendline):
     concat = ''
-    for line in dataaslist[startendline[0]:startendline[1]]: 
+    for line in dataaslist[startendline[0]:startendline[1]]:
         concat = concat + line
     concat = concat.replace("\"", "")
     concat = concat.replace("\n", "")
     csv = concat.split(";")
     emptycol = [34, 25, 12, 1, 0]
     csvstrip = []
-    for line in csv: 
+    for line in csv:
         csvstrip.append(line.strip())
-    for line in emptycol: 
+    for line in emptycol:
         del csvstrip[line]
     beautified = []
     for line in csvstrip:
@@ -156,18 +156,18 @@ def getcompletedata(fileobj):
     datastartendpos = getstartendpos(dataendpos, dataaslist)
     counter = 0
     completedata = []
-    for line in datastartendpos: 
+    for line in datastartendpos:
         persondata = getpersondata(dataaslist, datastartendpos, counter)
         completedata.append([getpersonname(persondata), getpersonid(persondata), getdivname(dataaslist), getstartenddate(dataaslist), getattendance(dataaslist, line)])
         counter = counter + 1
     return completedata
 
-def tosqlrecord(completedata): 
+def tosqlrecord(completedata):
     sqlrecord = []
-    for person in completedata: 
+    for person in completedata:
         datelist = person[3]
         counter = 0
-        for data in datelist: 
+        for data in datelist:
             name = person[0]
             nameid = person[1]
             divid = person[2][0]
@@ -191,12 +191,12 @@ def uploaddivisi(completedata):
     sqltablename = "divisi"
     sqlidnum = completedata[0][2][0]
     sqldivname = completedata[0][2][1]
-    if isidexist(sqlidnum, sqltablename) is True: 
-        print "ID exist: %s, %s" % (sqlidnum, sqldivname) 
+    if isidexist(sqlidnum, sqltablename) is True:
+        print "ID exist: %s, %s" % (sqlidnum, sqldivname)
     else:
         print "Uploading: %s, %s" % (sqlidnum, sqldivname)
         sql_insert("INSERT INTO %s.%s (`id`, `nama_div`) VALUES ('%s', '%s');" % (DBNAME, sqltablename, sqlidnum, sqldivname))
-    
+
 def uploadkaryawan(completedata):
     import random
     import hashlib
@@ -208,7 +208,7 @@ def uploadkaryawan(completedata):
         sqlkaryawanname = karyawan[0]
         sqldivname = karyawan[2][0]
         birthdate =  "%s-%s-%s" % (random.randint(1950, 1990), random.randint(1, 12), random.randint(1, 28))
-        if isidexist(sqlidnum, sqltablename) is True: 
+        if isidexist(sqlidnum, sqltablename) is True:
             print "ID exist: %s, %s, %s, %s" % (sqlidnum, sqlkaryawanname, sqldivname, birthdate)
         else:
             print "Uploading: %s, %s, %s, %s" % (sqlidnum, sqlkaryawanname, sqldivname, birthdate)
