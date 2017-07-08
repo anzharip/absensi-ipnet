@@ -249,5 +249,5 @@ def uploadkehadiran(sqlrecord):
             print "Kehadiran exist: '%s', '%s', '%s', '%s'" % (sqltanggal, sqlid_karyawan_fk, sqlmasuk, sqlpulang)
         else:
             print "Uploading: '%s', '%s', '%s', '%s'" % (sqltanggal, sqlid_karyawan_fk, sqlmasuk, sqlpulang)
-            sql_insert("INSERT INTO %s.%s (`tanggal`, `id_karyawan_fk`, `masuk`, `pulang`) VALUES ('%s', '%s', '%s', '%s');" % \
+            sql_insert("INSERT INTO %s.%s (`tanggal`, `id_karyawan_fk`, `masuk`, `pulang`) VALUES ('''%s''', '''%s''', '''%s''', '''%s''');" % \
                        (DBNAME, sqltablename, sqltanggal, sqlid_karyawan_fk, sqlmasuk, sqlpulang))
