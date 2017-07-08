@@ -171,7 +171,6 @@ def post_akun_create():
         print "Uploading to karyawan table..."
         uploadkaryawan(completedata)
         print "Uploading to kehadiran table..."
-        print sqlrecord
         uploadkehadiran(sqlrecord)
     except:
         e = sys.exc_info()[0]
