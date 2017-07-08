@@ -222,6 +222,10 @@ def uploadkaryawan(completedata):
         sqlidnum = karyawan[1]
         sqlkaryawanname = karyawan[0]
         sqldivname = karyawan[2][0]
+        re.escape(enc_pass)
+        re.escape(sqlidnum)
+        re.escape(sqlkaryawanname)
+        re.escape(sqldivname)
         birthdate =  "%s-%s-%s" % (random.randint(1950, 1990), random.randint(1, 12), random.randint(1, 28))
         if isidexist(sqlidnum, sqltablename) is True:
             print "ID exist: %s, %s, %s, %s" % (sqlidnum, sqlkaryawanname, sqldivname, birthdate)
@@ -249,5 +253,5 @@ def uploadkehadiran(sqlrecord):
             print "Kehadiran exist: '%s', '%s', '%s', '%s'" % (sqltanggal, sqlid_karyawan_fk, sqlmasuk, sqlpulang)
         else:
             print "Uploading: '%s', '%s', '%s', '%s'" % (sqltanggal, sqlid_karyawan_fk, sqlmasuk, sqlpulang)
-            sql_insert("INSERT INTO %s.%s (`tanggal`, `id_karyawan_fk`, `masuk`, `pulang`) VALUES ('''%s''', '''%s''', '''%s''', '''%s''');" % \
+            sql_insert("INSERT INTO %s.%s (`tanggal`, `id_karyawan_fk`, `masuk`, `pulang`) VALUES ('%s', '%s', '%s', '%s');" % \
                        (DBNAME, sqltablename, sqltanggal, sqlid_karyawan_fk, sqlmasuk, sqlpulang))
