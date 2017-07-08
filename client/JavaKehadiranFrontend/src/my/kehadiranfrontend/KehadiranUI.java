@@ -278,7 +278,7 @@ public class KehadiranUI extends javax.swing.JFrame {
         DefaultTableModel tabel_model;
         tabel_model = (DefaultTableModel) tabel_output.getModel();
         tabel_model.setRowCount(0);
-        String urlString = "http://192.168.56.11:8080/kehadiran";
+        String urlString = "http://localhost:18080/kehadiran";
         JsonObject readUrl;
         String param_id_akun;
         String param_tgl_lahir;
