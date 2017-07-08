@@ -222,10 +222,10 @@ def uploadkaryawan(completedata):
         sqlidnum = karyawan[1]
         sqlkaryawanname = karyawan[0]
         sqldivname = karyawan[2][0]
-        re.escape(enc_pass)
-        re.escape(sqlidnum)
-        re.escape(sqlkaryawanname)
-        re.escape(sqldivname)
+        enc_pass = re.escape(enc_pass)
+        sqlidnum = re.escape(sqlidnum)
+        sqlkaryawanname = re.escape(sqlkaryawanname)
+        sqldivname = re.escape(sqldivname)
         birthdate =  "%s-%s-%s" % (random.randint(1950, 1990), random.randint(1, 12), random.randint(1, 28))
         if isidexist(sqlidnum, sqltablename) is True:
             print "ID exist: %s, %s, %s, %s" % (sqlidnum, sqlkaryawanname, sqldivname, birthdate)
