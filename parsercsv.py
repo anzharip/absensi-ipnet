@@ -222,10 +222,8 @@ def uploadkaryawan(completedata):
         sqlidnum = karyawan[1]
         sqlkaryawanname = karyawan[0]
         sqldivname = karyawan[2][0]
-        # enc_pass = re.escape(enc_pass)
-        # sqlidnum = re.escape(sqlidnum)
+        # Escaping the value to handle value containing single quotes/special chars 
         sqlkaryawanname = re.escape(sqlkaryawanname)
-        # sqldivname = re.escape(sqldivname)
         birthdate =  "%s-%s-%s" % (random.randint(1950, 1990), random.randint(1, 12), random.randint(1, 28))
         if isidexist(sqlidnum, sqltablename) is True:
             print "ID exist: %s, %s, %s, %s" % (sqlidnum, sqlkaryawanname, sqldivname, birthdate)
