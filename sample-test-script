@@ -1,13 +1,12 @@
-## Working
-curl \
-  -F "upload=@/Users/anzhari/OneDrive/Universitas Budi Luhur/KKP/201603 Project Absensi IPNet/data/csv-new/" \
-  -F "idakun=100001" \
-  -F "pass=password" \
-  http://localhost:18080/akun/create
+
+#### /akun/create
 
 ## Working
-curl \
+curl -v \
   -F "upload=@/Users/anzhari/OneDrive/Universitas Budi Luhur/KKP/201603 Project Absensi IPNet/data/csv-new/Rekap Absen IPNET2 bln Februari 16.csv" \
   -F "idakun=100001" \
   -F "pass=password" \
   http://localhost:18080/akun/create
+
+#### /kehadiran
+curl -v "http://localhost:18080/kehadiran?idakun=190&tgl_lahir=19640104&tahun=2016&bulan=02&usr_pass=password"
