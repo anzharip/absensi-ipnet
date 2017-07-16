@@ -103,6 +103,7 @@ def validateinput(inputdata):
           "message": "Tipe input %s: terdapat karakter ilegal atau panjang variable tidak sesuai (panjang 1 - %s karakter). " % (inputdata.inputtype(), inputdata.maxlen),
           "data": ""
         }
+        print json.dumps(json_res)
         return False, json.dumps(json_res)
     else:
         return True, None
@@ -136,6 +137,7 @@ def post_akun_create():
             "message": "Kesalahan sistem: tidak bisa menghubungi basis data",
             "data": "",
         }
+        print json.dumps(json_res)
         return json.dumps(json_res)
     except:
         raise
@@ -145,6 +147,7 @@ def post_akun_create():
             "message": "ID/password tidak ditemukan",
             "data": "",
         }
+        print json.dumps(json_res)
         return json.dumps(json_res)
     try:
         name, ext = os.path.splitext(upload.filename)
@@ -154,6 +157,7 @@ def post_akun_create():
             "message": "Berkas gagal diunggah. Mohon pilih berkas dengan benar dan coba kembali. ",
             "data": "",
         }
+        print json.dumps(json_res)
         return json.dumps(json_res)
     if ext not in ('.csv'):
         json_res = {
@@ -161,6 +165,7 @@ def post_akun_create():
             "message": "Ekstensi file harus .CSV",
             "data": "",
         }
+        print json.dumps(json_res)
         return json.dumps(json_res)
     try:
         f = upload.file
@@ -181,12 +186,14 @@ def post_akun_create():
             "data": "",
         }
 
+        print json.dumps(json_res)
         return json.dumps(json_res)
     json_res = {
         "status": "ok",
         "message": "Upload data karyawan dan kehadiran berhasil",
         "data": "",
     }
+    print json.dumps(json_res)
     return json.dumps(json_res)
 
 @app.get('/kehadiran')
@@ -228,6 +235,7 @@ def get_kehadiran():
             "message": "Kesalahan sistem: tidak bisa menghubungi basis data",
             "data": "",
         }
+        print json.dumps(json_res)
         return json.dumps(json_res)
     except:
         raise
@@ -237,6 +245,7 @@ def get_kehadiran():
             "message": "ID/password tidak ditemukan",
             "data": "",
         }
+        print json.dumps(json_res)
         return json.dumps(json_res)
     try:
         data = sql_query('''SELECT t1.id, t1.tanggal, t1.id_karyawan_fk, t2.nama, t2.id_divisi_fk, t3.nama_div, t1.masuk, t1.pulang \
@@ -249,6 +258,7 @@ def get_kehadiran():
             "message": "Kesalahan sistem: tidak bisa menghubungi basis data",
             "data": "",
         }
+        print json.dumps(json_res)
         return json.dumps(json_res)
     except:
         raise
@@ -257,6 +267,7 @@ def get_kehadiran():
         "message": "Data berhasil diambil",
         "data": data
     }
+    print json.dumps(json_res, default=datetime_handler)
     return json.dumps(json_res, default=datetime_handler)
 
 run(app, host=APIHOST, port=APIPORT)
