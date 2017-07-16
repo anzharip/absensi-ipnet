@@ -3,10 +3,44 @@
 
 ## Working
 curl -v \
-  -F "upload=@/Users/anzhari/OneDrive/Universitas Budi Luhur/KKP/201603 Project Absensi IPNet/data/csv-new/Rekap Absen IPNET2 bln Februari 16.csv" \
+  -F "upload=@/Users/anzhari/GitRepo/absensi-ipnet/csv/Rekap Absen BRILINK bln Februari 17.csv" \
+  -F "idakun=100001" \
+  -F "pass=password" \
+  http://localhost:18080/akun/create
+
+curl -v \
+  -F "upload=@/Users/anzhari/GitRepo/absensi-ipnet/csv/Rekap Absen IPNET 1 bln Februari 17.csv" \
+  -F "idakun=100001" \
+  -F "pass=password" \
+  http://localhost:18080/akun/create
+
+curl -v \
+  -F "upload=@/Users/anzhari/GitRepo/absensi-ipnet/csv/Rekap Absen IPNET2 bln Februari 17.csv" \
   -F "idakun=100001" \
   -F "pass=password" \
   http://localhost:18080/akun/create
 
 #### /kehadiran
-curl -v "http://localhost:18080/kehadiran?idakun=190&tgl_lahir=19640104&tahun=2016&bulan=02&usr_pass=password"
+## From Rekap Absen BRILINK bln Februari 17.csv
+# Uploading: 73, CANDRA\ PUJO\ ASTOMO, 5, 1972-9-13
+curl -v "http://localhost:18080/kehadiran?idakun=73&tgl_lahir=19720913&tahun=2017&bulan=02&usr_pass=password"
+# Uploading: 82, MARLINA\ DWI\ LESTARI, 5, 1964-9-1
+curl -v "http://localhost:18080/kehadiran?idakun=82&tgl_lahir=19640901&tahun=2017&bulan=02&usr_pass=password"
+# Uploading: 93, IIS\ DWI\ ASTUTI, 5, 1973-11-16
+curl -v "http://localhost:18080/kehadiran?idakun=93&tgl_lahir=19731116&tahun=2017&bulan=02&usr_pass=password"
+
+## From Rekap Absen IPNET 1 bln Februari 17.csv
+#Uploading: 6, EDIYANTO\ LIE, 1, 1955-4-10
+curl -v "http://localhost:18080/kehadiran?idakun=6&tgl_lahir=19550410&tahun=2017&bulan=02&usr_pass=password"
+# Uploading: 7, NUGRAHA\ PRATAMA, 1, 1989-7-16
+curl -v "http://localhost:18080/kehadiran?idakun=7&tgl_lahir=19890716&tahun=2017&bulan=02&usr_pass=password"
+# Uploading: 91, SRI\ RAHAYU\ SH, 1, 1961-12-1
+curl -v "http://localhost:18080/kehadiran?idakun=91&tgl_lahir=19611201&tahun=2017&bulan=02&usr_pass=password"
+
+## From Rekap Absen IPNET2 bln Februari 17.csv
+# Uploading: 190, ZIKRI\ AMALIA, 2, 1974-7-12
+curl -v "http://localhost:18080/kehadiran?idakun=190&tgl_lahir=19740712&tahun=2017&bulan=02&usr_pass=password"
+# Uploading: 192, MELI\ MUSLIMAT, 2, 1973-3-15
+curl -v "http://localhost:18080/kehadiran?idakun=192&tgl_lahir=19730315&tahun=2017&bulan=02&usr_pass=password"
+# Uploading: 32, I\ BHENG\ ANITA, 2, 1982-11-2
+curl -v "http://localhost:18080/kehadiran?idakun=32&tgl_lahir=19821102&tahun=2017&bulan=02&usr_pass=password"

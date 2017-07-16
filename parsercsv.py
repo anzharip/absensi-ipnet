@@ -218,13 +218,15 @@ def uploadkaryawan(completedata):
     sqltablename = "karyawan"
     for karyawan in completedata:
         enc_pass = hashlib.sha512()
+        # Password is made static for now. TODO Build password management API
         enc_pass.update("password")
         sqlidnum = karyawan[1]
         sqlkaryawanname = karyawan[0]
         sqldivname = karyawan[2][0]
-        # Escaping the value to handle value containing single quotes/special chars 
+        # Escaping the value to handle value containing single quotes/special chars
         sqlkaryawanname = re.escape(sqlkaryawanname)
-        birthdate =  "%s-%s-%s" % (random.randint(1950, 1990), random.randint(1, 12), random.randint(1, 28))
+        # Birth date is made static for now. TODO Build birthdate management API
+        birthdate =  "%s-%s-%s" % ("1945", "08", "17")
         if isidexist(sqlidnum, sqltablename) is True:
             print "ID exist: %s, %s, %s, %s" % (sqlidnum, sqlkaryawanname, sqldivname, birthdate)
         else:
